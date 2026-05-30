@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiñay Tika - Rosas Eternas de Cintas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-flower"></i>
+                <span>Wiñay Tika</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#carrito" class="carrito-btn"><i class="fas fa-shopping-cart"></i> <span id="carrito-count">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Wiñay Tika</h1>
+            <p>Rosas Eternas de Cintas</p>
+            <p class="subtitle">Belleza que nunca se marchita 🌹</p>
+            <button class="btn btn-primary" onclick="document.getElementById('productos').scrollIntoView({behavior: 'smooth'})">
+                Compra Ahora
+            </button>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- Productos Section -->
+    <section class="productos" id="productos">
+        <div class="container">
+            <h2>Nuestros Diseños</h2>
+            <p class="section-subtitle">Cada rosa es un arte, cada diseño es único</p>
+            
+            <div class="filtros">
+                <button class="filtro-btn active" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="rojo">Rojo Pasión</button>
+                <button class="filtro-btn" data-filtro="rosa">Rosa Romántico</button>
+                <button class="filtro-btn" data-filtro="arcoiris">Arcoíris</button>
+                <button class="filtro-btn" data-filtro="lujo">Lujo</button>
+            </div>
+
+            <div class="grid-productos" id="grid-productos">
+                <!-- Los productos se cargarán aquí con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros Section -->
+    <section class="nosotros" id="nosotros">
+        <div class="container">
+            <div class="nosotros-content">
+                <div class="nosotros-text">
+                    <h2>Sobre Wiñay Tika</h2>
+                    <p><strong>Wiñay Tika</strong> significa "Flor Eterna" en quechua, y eso es exactamente lo que ofrecemos.</p>
+                    <p>Cada rosa es elaborada manualmente con cintas de la más alta calidad, creando un producto duradero que no se marchita nunca. Perfecto para:</p>
+                    <ul>
+                        <li>💝 Regalos especiales</li>
+                        <li>💒 Bodas y eventos</li>
+                        <li>🎓 Graduaciones</li>
+                        <li>✨ Decoración del hogar</li>
+                        <li>🎁 Cualquier ocasión</li>
+                    </ul>
+                </div>
+                <div class="nosotros-image">
+                    <div class="placeholder-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Carrito -->
+    <div id="carrito-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tu Carrito de Compras</h2>
+            <div id="carrito-items"></div>
+            <div class="carrito-total">
+                <strong>Total: $<span id="total-precio">0.00</span></strong>
+            </div>
+            <button class="btn btn-primary" onclick="finalizarCompra()">Comprar</button>
+            <button class="btn btn-secondary" onclick="cerrarCarrito()">Continuar Comprando</button>
+        </div>
+    </div>
+
+    <!-- Modal Producto -->
+    <div id="producto-modal" class="modal">
+        <div class="modal-content modal-producto">
+            <span class="close">&times;</span>
+            <div class="producto-detalle">
+                <div id="imagen-grande"></div>
+                <div class="info-producto">
+                    <h2 id="nombre-producto"></h2>
+                    <p id="descripcion-producto"></p>
+                    <div class="precio-section">
+                        <p class="precio"><strong>$<span id="precio-producto">0.00</span></strong></p>
+                        <div class="cantidad-section">
+                            <button onclick="decrementarCantidad()">-</button>
+                            <input type="number" id="cantidad" value="1" min="1">
+                            <button onclick="incrementarCantidad()">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="agregarAlCarrito()">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacto Section -->
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contacto-content">
+                <div class="contacto-form">
+                    <form onsubmit="enviarContacto(event)">
+                        <input type="text" placeholder="Tu nombre" required>
+                        <input type="email" placeholder="Tu email" required>
+                        <input type="text" placeholder="Asunto" required>
+                        <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+                <div class="contacto-info">
+                    <h3>Información de Contacto</h3>
+                    <p><i class="fas fa-phone"></i> +57 123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@winaytika.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Colombia</p>
+                    <div class="redes-sociales">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Wiñay Tika. Hecho con 💕 para ti.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
